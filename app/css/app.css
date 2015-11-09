@@ -1,0 +1,44 @@
+/* app css stylesheet */
+
+body {
+ 
+}
+
+div{
+  display: inline-block;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+.app-container{
+  background: #ffffff;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+  padding-right: 150px;
+  width: 100%;
+}
+
+
+.photo-container{
+  padding: 20px;
+  width: 100%;
+
+}
+
+.sticker-container{
+   -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 150px;
+  background: #ffffff;
+  padding: 20px 10px;
+  background-color: #eee;
+}
