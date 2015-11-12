@@ -4,19 +4,53 @@
 
 angular.module('sticker.controllers', [])
 
-.controller('StickerCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
-  }])
+.controller('HomeCtrl', function($scope, $state, $uibModal) {
+    $scope.image = null;
+    $scope.stickers = [];
+  
+    
+    
+    $scope.resetApp = function (){
+      $scope.image = null;
+    }
 
-.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
+    $scope.openModal = function () {
 
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    };
-  }]);
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'partials/sticker-modal.html',
+        controller: 'StickerCtrl',
+        size: 'sm',
+        resolve: {
+          uploadedImage: function () {
+            return $scope.sticker;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (uploadedImage) {
+        $scope.stickers.push(uploadedImage);
+        console.log($scope.stickers);
+      }, function () {
+        console.log('Modal dismissed at: ' + new Date());
+      });
+
+    }
+
+    
+})
+
+.controller('StickerCtrl', function($scope, $state, $uibModalInstance) {
+  
+  $scope.sticker = null;
+  
+  $scope.uploadSticker = function () {
+    $uibModalInstance.close($scope.sticker);
+  };
+  
+  $scope.closeModal = function () {
+    $uibModalInstance.close();
+  }
+});
+
+

@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3 class="modal-title">Upload a sticker</h3>
+</div>
+<div class="modal-body">
+    <div>
+        <img class="thumb" ng-src="{{sticker}}" ng-if="sticker!=null"/>
+    </div>
+    
+    Pick an image-file: <input type="file" ng-model="sticker" accept="image/*" app-filereader />
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="uploadSticker()">Submit</button>
+    <button class="btn btn-warning" type="button" ng-click="closeModal()">Cancel</button>
+</div>

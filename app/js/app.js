@@ -6,7 +6,7 @@ angular.module('stickerApp', [
   'ui.router',
   'ui.bootstrap',
   'sticker.animations',
-
+  'sticker.directives',
   'sticker.controllers',
   'sticker.filters',
   'sticker.services'
@@ -14,15 +14,15 @@ angular.module('stickerApp', [
 
 .config(function($stateProvider, $urlRouterProvider) {
   //
-  // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/stickers");
-  //
-  // Now set up the states
+  // For any unmatched url, redirect to /home
+  $urlRouterProvider.otherwise("/home");
+  
+
   $stateProvider
-    .state('stickers', {
-      url: "/stickers",
+    .state('home', {
+      url: "/home",
       templateUrl: "partials/home-view.html",
-      controller: 'StickerCtrl'
+      controller: 'HomeCtrl'
     })
     
     ;

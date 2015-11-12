@@ -1,7 +1,16 @@
 <div class="photo-container">
-  Photos
+  	<div class="action-bar" ng-if="image!=null">
+  		<button class="btn btn-warning"  ng-click="resetApp()">Start Over</button>
+  	</div>
+  	
+  	<div>
+        <img class="thumb" ng-src="{{image}}" ng-if="image!=null"/>
+    </div>
+    
+    Pick an image-file: <input type="file" ng-model="image" accept="image/*" app-filereader />
+    
 </div>
 
 <div class="sticker-container">
-  Stickers
+  <button class="btn btn-primary btn-sticker"  ng-click="openModal()">Upload new sticker</button>
 </div>
