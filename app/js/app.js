@@ -9,7 +9,8 @@ angular.module('stickerApp', [
   'sticker.directives',
   'sticker.controllers',
   'sticker.filters',
-  'sticker.services'
+  'sticker.services',
+  'ngDragDrop'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

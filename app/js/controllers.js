@@ -11,7 +11,9 @@ angular.module('sticker.controllers', [])
     
     
     $scope.resetApp = function (){
+      console.log($scope.image);
       $scope.image = null;
+      $scope.stickers = [];
     }
 
     $scope.openModal = function () {
@@ -30,9 +32,8 @@ angular.module('sticker.controllers', [])
 
       modalInstance.result.then(function (uploadedImage) {
         $scope.stickers.push(uploadedImage);
-        console.log($scope.stickers);
       }, function () {
-        console.log('Modal dismissed at: ' + new Date());
+       //console.log('Modal dismissed at: ' + new Date());
       });
 
     }
@@ -42,10 +43,20 @@ angular.module('sticker.controllers', [])
 
 .controller('StickerCtrl', function($scope, $state, $uibModalInstance) {
   
-  $scope.sticker = null;
-  
+  $scope.sticker = {
+    img : null,
+    title : ''
+  };
+  $scope.hasErrors = false;
+
   $scope.uploadSticker = function () {
-    $uibModalInstance.close($scope.sticker);
+    if($scope.sticker.img!=null && $scope.sticker.title!=''){
+      $scope.hasErrors = false;
+      $uibModalInstance.close($scope.sticker);
+    }else{
+      $scope.hasErrors = true;
+    }
+    
   };
   
   $scope.closeModal = function () {

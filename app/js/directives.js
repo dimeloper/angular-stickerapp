@@ -17,23 +17,21 @@ angular.module('sticker.directives', [])
 
                 element.bind('change', function(e) {
                     var element = e.target;
-                    if(element!=null){
-                    	$q.all(slice.call(element.files, 0).map(readFile))
-                        .then(function(values) {
-                            if (element.multiple) ngModel.$setViewValue(values);
-                            else ngModel.$setViewValue(values.length ? values[0] : null);
-                        });
-                    }else{
-                    	ngModel.$setViewValue(null);
-                    }
+                    $q.all(slice.call(element.files, 0).map(readFile))
+                    .then(function(values) {
+                        if (element.multiple) ngModel.$setViewValue(values);
+                        else ngModel.$setViewValue(values.length ? values[0] : null);
+                        
+                    });
                     
-
+                    
                     function readFile(file) {
                         var deferred = $q.defer();
-
+                        
                         var reader = new FileReader();
                         reader.onload = function(e) {
                             deferred.resolve(e.target.result);
+
                         };
                         reader.onerror = function(e) {
                             deferred.reject(e);

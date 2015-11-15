@@ -3,7 +3,7 @@
   		<button class="btn btn-warning"  ng-click="resetApp()">Start Over</button>
   	</div>
   	
-  	<div>
+  	<div class="thumb-wrapper">
         <img class="thumb" ng-src="{{image}}" ng-if="image!=null"/>
     </div>
     
@@ -13,4 +13,8 @@
 
 <div class="sticker-container">
   <button class="btn btn-primary btn-sticker"  ng-click="openModal()">Upload new sticker</button>
+  <div class="sticker" ng-repeat="sticker in stickers track by $index">
+    <img class="sticker-thumb" ng-src="{{sticker.img}}" data-drag="true" jqyoui-draggable/>
+    <p>{{sticker.title}}</p>
+  </div>
 </div>
