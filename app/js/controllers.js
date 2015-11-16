@@ -7,14 +7,37 @@ angular.module('sticker.controllers', [])
 .controller('HomeCtrl', function($scope, $state, $uibModal) {
     $scope.image = null;
     $scope.stickers = [];
-  
+    $scope.stickersused = [];
+    $scope.canvas = [];
     
     
     $scope.resetApp = function (){
-      console.log($scope.image);
       $scope.image = null;
       $scope.stickers = [];
+      $scope.stickersused = [];
+      $scope.canvas = [];
     }
+
+    $scope.deleteSticker = function(index){
+      $scope.stickers.splice(index,1);
+    }
+
+    $scope.stopCallback = function (evt, ui, index) {
+       // This function is being called only when the sticker is being placed onto the image.
+        var myStyle = {
+          "top" : (ui.offset.top+19)+"px",
+          "left" : (ui.offset.left+5)+"px"
+        };
+
+        var sticker = {
+          img : $scope.stickers[index].img,
+          title : $scope.stickers[index].title,
+          drag : true,
+          style : myStyle
+        };
+
+        $scope.stickersused.push(sticker);
+    };
 
     $scope.openModal = function () {
 
@@ -45,16 +68,24 @@ angular.module('sticker.controllers', [])
   
   $scope.sticker = {
     img : null,
-    title : ''
+    title : '',
+    drag : true
   };
-  $scope.hasErrors = false;
+
+  $scope.hasImgError = false;
+  $scope.hasTitleError = false;
 
   $scope.uploadSticker = function () {
-    if($scope.sticker.img!=null && $scope.sticker.title!=''){
-      $scope.hasErrors = false;
-      $uibModalInstance.close($scope.sticker);
+    if($scope.sticker.img==null){
+      $scope.hasImgError = true;
+      $scope.hasTitleError = false;
+    }else if($scope.sticker.title==''){
+      $scope.hasTitleError = true;
+      $scope.hasImgError = false;
     }else{
-      $scope.hasErrors = true;
+      $scope.hasImgError = false;
+      $scope.hasTitleError = false;
+      $uibModalInstance.close($scope.sticker);
     }
     
   };

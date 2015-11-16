@@ -7,9 +7,10 @@
         <img class="thumb" ng-src="{{sticker.img}}" ng-if="sticker.img!=null" style="max-height:200px;"/>
     </div>
     
-    Pick an image-file: <input type="file" ng-model="sticker.img" accept="image/*" app-filereader />
+    <input type="file" ng-model="sticker.img" accept="image/*" app-filereader />
     <input type="text" ng-model="sticker.title" placeholder="Sticker title.."/>
-    <p class="hasErrors" ng-show="hasErrors">Please insert an image and a title.</p>
+    <p class="hasErrors" ng-show="hasImgError">Please insert an image.</p>
+    <p class="hasErrors" ng-show="hasTitleError">Please insert a title.</p>
 </div>
 <div class="modal-footer">
 	

@@ -26,7 +26,7 @@ input[type=text] {
 
 input[type=file] {
     display: inline-block;
-    
+    width: 200px;
 }
 
 .hasErrors{
@@ -74,10 +74,13 @@ input[type=file] {
   background-color: #eee;
 }
 
-.thumb-wrapper{
+.canvas-wrapper{
   display: block;
   width: 100%;
-  text-align: center;
+  margin-top: 20px;
+  height:400px;
+  width:100%;
+  background-size:contain;
 }
 
 .thumb{
@@ -86,8 +89,28 @@ input[type=file] {
   margin-bottom: 20px;
 }
 
+.sticker{
+  margin-top: 10px;
+}
+
+.sticker button{
+  display: none;
+  position: absolute;
+  right: 10px;
+}
+
+.sticker:hover button {
+  display: inline;
+}
+
 .sticker-thumb{
   max-width: 100%;
   max-height: 200px;
-  margin-top: 20px;
+  margin-top: 40px;
+}
+
+.sticker-dropped{
+  max-width: 140px;
+  max-height: 200px;
+  position: absolute;
 }

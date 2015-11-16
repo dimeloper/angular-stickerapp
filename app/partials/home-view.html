@@ -3,18 +3,25 @@
   		<button class="btn btn-warning"  ng-click="resetApp()">Start Over</button>
   	</div>
   	
-  	<div class="thumb-wrapper">
-        <img class="thumb" ng-src="{{image}}" ng-if="image!=null"/>
+  	Pick a background image: <input type="file" ng-model="image" accept="image/*" app-filereader />
+
+    <div class="canvas-wrapper" data-drop="true" data-jqyoui-options jqyoui-droppable style="background: url({{image}}) no-repeat center center;">
+      <img class="sticker-dropped" ng-repeat="sticker in stickersused track by $index" ng-src="{{sticker.img}}" 
+      ng-style="sticker.style">
+      
+
     </div>
-    
-    Pick an image-file: <input type="file" ng-model="image" accept="image/*" app-filereader />
     
 </div>
 
 <div class="sticker-container">
   <button class="btn btn-primary btn-sticker"  ng-click="openModal()">Upload new sticker</button>
+  
   <div class="sticker" ng-repeat="sticker in stickers track by $index">
-    <img class="sticker-thumb" ng-src="{{sticker.img}}" data-drag="true" jqyoui-draggable/>
+    <button class="btn btn-danger btn-delete-sticker"  ng-click="deleteSticker($index)">Delete</button>
+    
+    <img class="sticker-thumb" ng-src="{{sticker.img}}" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="sticker" jqyoui-draggable="{index: {{$index}}, placeholder: 'keep', containment:'parent', onStop : 'stopCallback($index)'}"/>
     <p>{{sticker.title}}</p>
+    
   </div>
 </div>
